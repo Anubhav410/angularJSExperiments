@@ -11,19 +11,25 @@
 
     <script type="text/javascript">
       var myApp = angular.module('app' , []);
-      myApp.directive("welcome" , function(){
-        return {
-          restrict : 'A',
-          link :  function() {
-            alert('Howdy!');
-          },
-          template : 'lolism'
+      myApp.directive("enterelement" , function(){
+          return function(scope , element){element.bind('mouseover' , function(){
+            console.log("You are over me");
+          });
         }
       });
+
+      myApp.directive("leaveelement" , function(){
+        return function(scope , element){
+        element.bind('mouseleave' , function(){
+          console.log("You are leaving me :(");
+        });
+      }
+      });
+
     </script>
 
   </head>
   <body>
-    <div welcome></div>
+    <div enterelement leaveelement> That is Me , Open console and hover over me to see the magic!</div>
   </body>
 </html>
